@@ -22,8 +22,6 @@ void graph_frame() {
 
 }
 
-void graph_line8() {}
-
 void graph_line() {
     int y = vga_line >> 1;
 
