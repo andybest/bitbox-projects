@@ -1,9 +1,12 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stdint.h>
 
-typedef struct
+#define NO_PIXEL 0xFFFF
+
+typedef struct Drawable
 {
-    bool (*is_on_line)(int);
-    bool (*draw_pixel)(int, int);
+    bool (*is_on_line)(struct Drawable*, int);
+    uint16_t (*draw_pixel)(struct Drawable*, int, int);
 } Drawable;
