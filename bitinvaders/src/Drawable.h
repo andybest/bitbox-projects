@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define NO_PIXEL 0xFFFF
+#define NO_PIXEL 0x8000
 
 typedef struct Drawable
 {

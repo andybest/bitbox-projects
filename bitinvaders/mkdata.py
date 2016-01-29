@@ -34,10 +34,10 @@ def iterate_files():
     cfile = "#include \"imageAssets.h\"\n\n"
     cfile += "\n".join(images.values())
     
-    with open("imageAssets.h", "w") as f:
+    with open("src/imageAssets.h", "w") as f:
         f.write(header)
         
-    with open("imageAssets.c", "w") as f:
+    with open("src/imageAssets.c", "w") as f:
         f.write(cfile)
     
 
@@ -49,7 +49,11 @@ def convert_asset(asset_path, asset_name):
     
     outputpixels = []
     for p in list(imagedata):
-        pixel = rgb_32_to_16(p[0], p[1], p[2])
+        pixel = 0
+        if p[3] < 255:
+            pixel = 0x8000
+        else:
+            pixel = rgb_32_to_16(p[0], p[1], p[2])
         pixstring = "0x" + format(pixel, 'x')
         outputpixels.append(pixstring)
     

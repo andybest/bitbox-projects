@@ -15,24 +15,24 @@ void game_init() {
 
 void game_frame() {
     if(!right) {
-        logo->x+= 2;
+        logo->x += 2;
         if(logo->x + logo->width >= 320) {
             right = true;
         }
     } else {
-        logo->x--;
+        logo->x -= 2;
         if(logo->x == 0) {
             right = false;
         }
     }
     
     if(down) {
-        logo->y+= 2;
+        logo->y += 2;
         if(logo->y + logo->height >= 240) {
             down = false;
         }
     } else {
-        logo->y--;
+        logo->y -= 2;
         if(logo->y == 0) {
             down = true;
         }
@@ -44,7 +44,7 @@ void graph_frame() {
 
 void graph_line() {
     // Clear to black
-    memset(draw_buffer, 0, sizeof(uint16_t) * 640);
+    memset(draw_buffer, 0x0F0F, sizeof(uint16_t) * 640);
     
     // We are halving the resolution
     int currentLine = vga_line / 2;
