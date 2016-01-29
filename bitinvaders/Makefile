@@ -1,5 +1,5 @@
 #bitinvaders makefile
 
 NAME = bitinvaders
-GAME_C_FILES = imageAssets.c main.c 
+GAME_C_FILES = $(wildcard src/*.c) 
 include $(BITBOX)/lib/bitbox.mk
