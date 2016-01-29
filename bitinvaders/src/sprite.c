@@ -1,8 +1,9 @@
 #include "sprite.h"
+#include <stdlib.h>
 
 Sprite *new_sprite()
 {
-    Sprite *s = malloc(sizeof(struct Sprite));
+    Sprite *s = malloc(sizeof(Sprite));
 
     s->x = 0;
     s->y = 0;
@@ -25,6 +26,6 @@ void sprite_draw_pixel(Sprite *s, int x, int y)
 void delete_sprite(Sprite *s)
 {
     if(s->ownsPixels)
-        delete(s->pixels);
-    delete(s);
+        free(s->pixels);
+    free(s);
 }
