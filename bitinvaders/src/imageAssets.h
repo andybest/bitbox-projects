@@ -7,4 +7,5 @@ typedef struct RGB555Image {
     const uint16_t *pixels;
 } RGB555Image;
 
+const struct RGB555Image image_invader1;
 const struct RGB555Image image_logo;
