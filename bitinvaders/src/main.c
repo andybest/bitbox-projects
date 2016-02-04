@@ -4,14 +4,14 @@
 #include <stdio.h>
 
 Sprite *logo;
-Sprite *invader;
+ASprite *invader;
 
 bool right;
 bool down;
 
 void game_init() {
     logo = new_sprite_from_data(image_logo.pixels, image_logo.width, image_logo.height);
-    invader = new_sprite_from_data(image_invader1.pixels, image_invader1.width, image_invader1.height);
+    invader = new_asprite_from_data(image_invader1.pixels, image_invader1.width, image_invader1.height / 4, 4);
 
     right = false;
     down = true;
@@ -41,6 +41,9 @@ void game_frame() {
             down = true;
         }
     }
+
+    if(vga_frame % 4 == 0)
+        asprite_next_frame(invader);
 }
 
 void graph_frame() {
@@ -65,9 +68,11 @@ void graph_line() {
         }
     }
 
+    Drawable *i = (Drawable *)invader;
+
     if(sprite_is_on_line(invader, currentLine)) {
         for(int x = 0; x < 320; x++) {
-            uint16_t p = invader->drawable.draw_pixel(invader, x, currentLine);
+            uint16_t p = i->draw_pixel(invader, x, currentLine);
             if(p != NO_PIXEL) {
                 draw_buffer[(x*2)] = p;
                 draw_buffer[(x*2) + 1] = p;
